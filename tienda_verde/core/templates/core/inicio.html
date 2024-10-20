@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<h1 id="t_v_inicio">Bienvenido {{nombre_usuario}} a Tienda Verde</h1>
+{% else %}
+<h1 id="t_v_inicio">Bienvenido ^^</h1>
+{% endif%}
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12" id="Descripcion_empresa">
+                <h2 id="Quienes">Quiénes somos</h2>
+                <p id="descripcion">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex nemo fuga quia magni ut amet quo, provident eius aliquid? Voluptates, asperiores soluta? Harum provident adipisci ex expedita sint perspiciatis asperiores sequi doloribus dolores? Beatae alias pariatur quae enim ratione. Voluptates, at unde repellat, qui aspernatur tenetur quisquam eaque culpa sint veritatis doloribus cum reiciendis ad similique ullam officia consectetur quidem, autem assumenda maxime commodi ratione nemo quaerat? Perspiciatis, pariatur? Laboriosam reiciendis facere cupiditate voluptatum suscipit maiores exercitationem fugiat assumenda possimus totam neque, repellendus sint sit ipsam ut magni omnis tenetur ab nostrum facilis quaerat magnam inventore. Distinctio officiis sapiente corporis reiciendis in provident vero accusantium accusamus voluptates quisquam ex exercitationem cupiditate dolorem itaque, ad quidem. Ad eum voluptas, quae tenetur impedit fuga. Culpa illo deleniti fugit mollitia est pariatur, fuga repellat possimus? Magnam ipsum magni voluptatem velit est porro reprehenderit dignissimos, error maiores ea, itaque nesciunt facilis commodi fugit eligendi. Temporibus officiis dolore eveniet similique eius! Tempore tempora excepturi dolor modi, sit, ex beatae optio velit dicta culpa, eos voluptatum temporibus quia cumque? Vero quisquam veritatis soluta! Nemo illo unde sit ipsum aliquam, facere eum natus totam similique voluptates non corrupti, nulla quis culpa consequuntur distinctio suscipit ratione. Distinctio, atque.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2 id="destacados">Productos destacados</h2>
+        </div>
+        <div class="row" id="productosDes">
+            <div class="col-md-6 d-flex mb-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="media/imagenes/jabones-artesanos.jpg" class="img-fluid img-thumbnail" alt="Jabón Ecológico">
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Jabón Ecológico</h5>
+                        <p>Este jabon ecologico es una opcion saludable y respetuosa con nuestro medio ambiente del cual todos nos debemos preocupar. Hecho con aceites vegetales y escencias naturales.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex mb-4">
+              <div class="row">
+                  <div class="col-md-6">
+                    <img src="media/imagenes/Basureros_para_reciclaje.jpg" class="img-fluid img-thumbnail" alt="Basureros para    reciclaje">
+                  </div>
+                  <div class="col-md-6">
+                    <h5>Basureros para reciclaje</h5>
+                      <p>Estos basureros nos permiten contribuir para un futuro mas sostenible donde estos basureros se diseñaron para facilitar la separación y el reciclaje de distintos tipos de residuos , lo cual hace que las personas puedan reciclar ya que sienten mas amigable la facilidad que les da para separar los diversos residuos</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="productosDes">
+            <div class="col-md-6 d-flex mb-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="media/imagenes/DetergenteEcologico.jpg" class="img-fluid img-thumbnail" alt="Detergente Ecológico">
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Detergente Ecológico</h5>
+                        <p>Nuestro detergente ecologico es una buena opcion para quienes desean reducir la huella de carbono generada y cuidar el medio ambiente. Está hecho con ingredientes naturales y biodegradables , lo cual hace que este sea seguro para el agua y el ecosistema</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex mb-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="media/imagenes/Bolsa_reutilizable.jpg" class="img-fluid img-thumbnail" alt="Bolsas reutilizables">
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Bolsas reutilizables</h5>
+                        <p>Nuestras bolsas reutilizables son una inversion a futuro para nuestro planeta. Está hecha de materiales reciclados y biodegradables, lo cual permite que estas aporten al momento de descomponerse</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

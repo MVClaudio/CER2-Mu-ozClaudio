@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+
+{% block content %}
+<h1>Inicia Sesión en tu Cuenta Verde</h1>
+
+{% if messages %}
+    <div class="alert alert-danger">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+<form  method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="username" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" id="username" name="username" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
+
+<div id="register_log">
+    <p>¿No tienes una Cuenta Verde? <br> Regístrate aquí</p>
+    <a href="{% url 'Pagina_registro' %}" class="btn btn-secondary">Registrarse</a>
+</div>
+{% endblock %}
