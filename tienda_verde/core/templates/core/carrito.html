@@ -1,32 +1,29 @@
 {% extends 'core/base.html' %}
 
-
-
 {% block content %}
-<h2>Carrito de Compras</h2>
 
-{% if carrito %}
+<div class="box-element">
+    <h2 id="tl_carrito">Carrito de Compras</h2>
+    <a class='btn btn-outline-dark' id="btn-volver" href="{% url 'Catalogo_productos' %}">Volver al catálogo</a>
+</div>
+{% if productos_en_carrito %}
     <table class="table">
         <thead>
             <tr>
                 <th>Producto</th>
-                <th>Cantidad</th>
                 <th>Precio</th>
-                <th>Total</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            {% for item in carrito %}
+            {% for item in productos_en_carrito %}
             <tr>
                 <td>{{ item.producto.nombre }}</td>
-                <td>{{ item.cantidad }}</td>
-                <td>${{ item.producto.precio }}</td>
-                
+                <td>${{ item.precio }}</td>
                 <td>
-                    <form method="post" action="{% url 'eliminar_del_carrito' item.producto.id %}">
+                    <form method="post" action="{% url 'Eliminar_del_carrito' item.producto.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                        <button type="submit" class="btn btn-danger" id="btn_del">Eliminar</button>
                     </form>
                 </td>
             </tr>
@@ -35,7 +32,7 @@
     </table>
 
     <h3>Total a Pagar: ${{ total }}</h3>
-    <form method="post" action="{% url 'confirmar_pedido' %}">
+    <form method="post" action="{% url 'Confirmar_pedido' %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-success">Confirmar Pedido</button>
     </form>

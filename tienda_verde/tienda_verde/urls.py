@@ -23,13 +23,16 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/',admin.site.urls),
-    path('accounts/',include('django.contrib.auth.urls')),
+    path("accounts/",include('django.contrib.auth.urls')),
     path('',views.inicio,name='Pagina_inicio'),
     path('login/',views.iniciar_sesion,name='Pagina_login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='Pagina_inicio'), name='logout'),
     path('catalogo/',views.catalogo,name='Catalogo_productos'),
-    path('registro.html',views.registro,name='Pagina_registro'),
-    path('carrito/',views.carrito,name='Carrito_productos')
+    path('registro.html',views.registro,name="Pagina_registro"),
+    path('carrito/',views.carrito,name='Carrito_productos'),
+    path("agregar_al_carrito/<int:producto_id>",views.agregar_producto,name="Agregar_a_carrito"),
+    path("eliminar_del_carrito<int:producto_id>",views.quitar_producto,name="Eliminar_del_carrito"),
+    path("confirmar_pedido/",views.conf_pedido,name="Confirmar_pedido")
 
 ]
 

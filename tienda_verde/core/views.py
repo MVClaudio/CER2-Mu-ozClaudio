@@ -1,11 +1,11 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .models import Producto
+from .models import Producto,Pedido,PedidoProducto
 # from django.contrib.auth import logout
 
 # Create your views here.
@@ -71,11 +71,74 @@ def catalogo(request):
     }
     return render(request, 'core/catalogo.html', data)
 
+
+# MAnejo de carrito 
 @login_required
 def carrito(request):
-    
-    titulo='Tu carrito | Tienda Verde'
-    data={
-        'titulo':titulo
+    titulo = 'Tu carrito | Tienda Verde'
+    carrito = request.session.get("carrito", {})
+    p_en_carrito = []
+    total = 0
+    for producto_id, datos_producto in carrito.items():
+        producto = get_object_or_404(Producto, id=producto_id)
+        p_en_carrito.append({
+            "producto": producto,
+            "nombre": datos_producto["nombre"],
+            "precio": datos_producto["precio"],
+            "total": datos_producto["total"]
+        })
+        total += datos_producto["total"]
+
+    data = {
+        'titulo': titulo,
+        'productos_en_carrito': p_en_carrito,
+        'total': total,
     }
-    return render(request,'core/carrito.html',data)
+    return render(request, 'core/carrito.html', data)
+
+@login_required
+def agregar_producto(request,producto_id):
+    producto= get_object_or_404(Producto, id=producto_id)
+    carrito= request.session.get("carrito", {})
+    
+    if producto_id not in carrito:
+        carrito[producto_id]={
+            "nombre": producto.nombre,
+            "precio": producto.valor,
+            "total": producto.valor 
+        }
+    else:
+        messages.info(request,"Este producto ya existe en el carrito")
+        return redirect("Carrito_productos")
+        
+    
+    request.session["carrito"]=carrito
+    return redirect("Carrito_productos")
+
+@login_required
+def quitar_producto(request,producto_id):
+    carrito= request.session.get("carrito",{})
+    if str(producto_id) in carrito:
+        del carrito[str(producto_id)]
+        request.session["carrito"]=carrito
+    return redirect('Carrito_productos')
+
+@login_required
+def conf_pedido(request):
+    print(request.method)
+    if request.method == 'POST':
+        carrito=request.session.get('carrito',{})
+        if not carrito:
+            messages.info(request,"No hay productos a confirmar")
+            return redirect("Carrito_productos")
+        pedido=Pedido(cliente=request.user)
+        pedido.save()
+        for producto_id,item in carrito.items():
+            producto=get_object_or_404(Producto,id=producto_id)
+            PedidoProducto.objects.create(pedido=pedido,producto=producto)
+        request.session["carrito"]={}
+        messages.success(request,"Se ha confirmado correctamente su pedido ")
+        return redirect('Pagina_inicio')
+    else:
+        print("Error .metodo GET no permitido")
+        return redirect("Carrito_productos")

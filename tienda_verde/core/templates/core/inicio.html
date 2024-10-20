@@ -2,10 +2,18 @@
 
 {% block content %}
 {% if request.user.is_authenticated %}
-<h1 id="t_v_inicio">Bienvenido {{nombre_usuario}} a Tienda Verde</h1>
+<h1 id="t_v_inicio">Bienvenido {{nombre_usuario | upper}} a Tienda Verde</h1>
 {% else %}
 <h1 id="t_v_inicio">Bienvenido ^^</h1>
 {% endif%}
+
+{% if messages %}
+            <div class="alert alert-info" role="alert">
+                {% for message in messages %}
+                    {{ message }}<br>
+                {% endfor %}
+            </div>
+{% endif %}
 <main>
     <div class="container-fluid">
         <div class="row">

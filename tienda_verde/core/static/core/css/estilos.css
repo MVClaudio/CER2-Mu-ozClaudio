@@ -84,7 +84,6 @@ body {
     color: #388e3c;
 }
 
-/* Hover effects */
 #productosDes .img-thumbnail:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease;
@@ -95,7 +94,7 @@ body {
     transition: color 0.3s ease;
 }
 
-/* Botón de acción */
+
 .btn-primary {
     background-color: #4caf50;
     border-color: #4caf50;
@@ -106,7 +105,7 @@ body {
     border-color: #388e3c;
 }
 
-/* Ajustes responsive */
+
 @media (max-width: 768px) {
     #productosDes .row {
         flex-direction: column;
@@ -134,4 +133,20 @@ body {
     margin-bottom: 20px;
     padding: 10px;
     text-align: justify;
+}
+
+ #btn-volver{
+    float:right;
+    margin: 5px;
+} 
+
+#tl_carrito{
+    padding-top: 20px;
+
+}
+
+#btn_del{
+    background-color: #998650;
+    border-color: white;
+    
 }
