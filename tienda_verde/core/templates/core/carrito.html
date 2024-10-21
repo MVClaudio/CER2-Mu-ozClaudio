@@ -3,8 +3,7 @@
 {% block content %}
 
 <div class="box-element">
-    <h2 id="tl_carrito">Carrito de Compras</h2>
-    <a class='btn btn-outline-dark' id="btn-volver" href="{% url 'Catalogo_productos' %}">Volver al catálogo</a>
+    <h1 id="tl_carrito">Carrito de Compras</h1>
 </div>
 {% if productos_en_carrito %}
     <table class="table">
@@ -12,7 +11,7 @@
             <tr>
                 <th>Producto</th>
                 <th>Precio</th>
-                <th>Acciones</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +35,9 @@
         {% csrf_token %}
         <button type="submit" class="btn btn-success">Confirmar Pedido</button>
     </form>
+    <a class='btn btn-outline-dark' id="btn-volver" href="{% url 'Catalogo_productos' %}">Volver al catálogo</a>
 {% else %}
-    <p>No hay productos en el carrito.</p>
+    <p id="vacio">No hay productos en el carrito.</p>
+    <a class='btn btn-outline-dark' id="btn-volver" href="{% url 'Catalogo_productos' %}">Volver al catálogo</a>
 {% endif %}
 {% endblock %}
